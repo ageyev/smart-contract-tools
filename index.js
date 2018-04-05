@@ -14,6 +14,7 @@ let $sct = {};
 // has the lates compiler version (^0.4.21)
 const solc = require('solc');
 const Web3 = require('web3'); // use ver. 0.20.xx as used MetaMask now
+const truffleContract = require("truffle-contract");
 const fs = require("fs");
 
 /* web3 instantiation */
@@ -108,7 +109,7 @@ console.log("Default account:", $sct.web3.eth.defaultAccount);
 console.log("-------------------------------");
 //
 
-$sct.getContractObjFromString = function (source, contractName) {
+$sct.getSolcJsCompiledSourceFromString = function (source, contractName) {
     let compiledContracts;
     try {
         compiledContracts = solc.compile(source, 1); // setting 1 as second parameter activates the optimiser
@@ -125,6 +126,19 @@ $sct.getContractObjFromString = function (source, contractName) {
     const compiledContract = compiledContracts.contracts[':' + contractName];
     if (compiledContract === undefined) {
         console.log('provided source code does not contain contract named: ', contractName, "(" + contractNames + ")");
+    }
+    return compiledContract; // or undefined
+};
+
+$sct.getSolcJsCompiledSourceFromFile = function (pathToFile, contractName) {
+    const source = fs.readFileSync(pathToFile, 'utf8');
+    return $sct.getSolcJsCompiledSourceFromString(source, contractName);
+};
+
+$sct.getContractObjFromString = function (source, contractName) {
+    const compiledContract = $sct.getSolcJsCompiledSourceFromString(source, contractName);
+    if (compiledContract === undefined) {
+        return undefined;
     }
     const abi = compiledContract.interface;
     return $sct.web3.eth.contract(JSON.parse(abi));
@@ -262,6 +276,25 @@ $sct.allEvents = function (contractInstance) {
             }
         }
     );
+};
+
+/* -- truffle */
+
+$sct.getTruffleContractObjFromString = function (source, contractName) {
+    let solcCompiledContract = $sct.getSolcJsCompiledSourceFromString(source, contractName);
+    let truffleContractObj = truffleContract(
+        {
+            abi: solcCompiledContract.interface,
+            unlinked_binary: '0x' + solcCompiledContract.bytecode,
+        }
+    );
+    truffleContractObj.setProvider($sct.web3.currentProvider);
+    return truffleContractObj;
+};
+
+$sct.getTruffleContractObjFromFile = function (pathToFile, contractName) {
+    const source = fs.readFileSync(pathToFile, 'utf8');
+    return $sct.getTruffleContractObjFromString(source, contractName);
 };
 
 module.exports = $sct;

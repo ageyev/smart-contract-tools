@@ -7,7 +7,15 @@ To be used for NodeJS apps, not for dApps as most functions are not asynchronous
 Basically, it creates web3 instance depending on eth node detected, shows basic info about the network 
 and provides convenience functions.
 
+
+
 ## Usage
+
+### Instalation 
+
+```bash
+npm install smart-contract-tools
+```
 
 ### Instantiate 
 
@@ -92,6 +100,10 @@ txTransferTokens: 0xae75ea7fdbd12f636e8970a7cfb569260ef9d8bfbd9fc78b4ea349b757e8
 
 all function arguments are strings
 
+**$sct.getSolcJsCompiledSourceFromString(source, contractName)**
+
+**$sct.getSolcJsCompiledSourceFromFile(pathToFile, contractName)**
+
 **$sct.getContractObjFromString(source, contractName)**
 
 **$sct.getContractObjFromFile(pathToFile, contractName)**
@@ -103,4 +115,8 @@ all function arguments are strings
 **$sct.getContractInstanceFromStringAndAddress(source, contractName, address)**
 
 **$sct.getContractInstanceFromFileAndAddress(pathToFile, contractName, address)**
+
+**$sct.getTruffleContractObjFromString(source, contractName)**
+
+**$sct.getTruffleContractObjFromFile(pathToFile, contractName)**
 
