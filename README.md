@@ -7,16 +7,11 @@ To be used for NodeJS apps, not for dApps as most functions are not asynchronous
 Basically, it creates web3 instance depending on eth node detected, shows basic info about the network 
 and provides convenience functions.
 
-
-
 ## Usage
-
-### Instalation 
-
+### Installation 
 ```bash
 npm install smart-contract-tools
 ```
-
 ### Instantiate 
 
 code: 
@@ -62,7 +57,6 @@ contract address:  0xb1c20f4ddd8a2a73648aa812113801380503aa51
 
 [sct.use.example.js] contract deployed, contractInstance.address:  0xb1c20f4ddd8a2a73648aa812113801380503aa51
 ```
-
 ### Instantiate contract from source and an existing address
 
 code: 
@@ -95,7 +89,6 @@ output:
 txSendEth: 0xb3838261d656adfef46282190af237d80bdf7554ff2e9d8c7f59072cea3c2434
 txTransferTokens: 0xae75ea7fdbd12f636e8970a7cfb569260ef9d8bfbd9fc78b4ea349b757e887d0
 ```
-
 ## List of functions 
 
 all function arguments are strings

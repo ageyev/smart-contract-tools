@@ -7,8 +7,9 @@
 
 git add .
 git commit -a -m "change version"
-git tag v0.3.0
+git tag v0.3.1
 git push origin master --tags
+git push --all
 
 npm whoami
 npm publish
