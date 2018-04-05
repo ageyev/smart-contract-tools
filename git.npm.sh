@@ -7,7 +7,7 @@
 
 git add .
 git commit -a -m "change version"
-git tag v0.3.1
+git tag v0.3.2
 git push origin master --tags
 git push --all
 
