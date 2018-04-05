@@ -6,8 +6,8 @@
 #git push origin master --tags
 
 git add .
-git commit -a -m "add deploy functions"
-git tag v0.2.0
+git commit -a -m "change version"
+git tag v0.3.0
 git push origin master --tags
 
 npm whoami
