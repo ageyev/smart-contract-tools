@@ -2,11 +2,18 @@
 // nodejs ./examples/sct.use.example.js
 
 let $sct = require('../index.js');
+const fs = require("fs");
 
-/* -- truffle */
+const addressFile = "./examples/smart-contract/contract.deployed.at.address.txt";
+if (fs.existsSync(addressFile)) {
+    fs.unlinkSync(addressFile);
+}
+
 let contractDeployed = $sct.deployContractFromFile("./examples/smart-contract/TestContract.sol", "TestContract");
 if (contractDeployed !== undefined) {
     console.log("[sct.use.example.js] contract deployed, contract instance address: ", contractDeployed.address);
+    fs.writeFileSync(addressFile);
+
 } else {
     console.log("[sct.use.example.js] contract was not created");
 }
@@ -16,6 +23,7 @@ let contract = $sct.getContractInstanceFromFileAndAddress(
     "TestContract",
     contractDeployed.address
 );
+
 
 let txSendEth = $sct.web3.eth.sendTransaction({
     from: $sct.web3.eth.accounts[0],
@@ -65,3 +73,5 @@ truffleContractObj.at(contractDeployed.address)
             // }
         }
     );
+
+

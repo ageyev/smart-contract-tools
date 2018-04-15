@@ -106,6 +106,19 @@ for (let i = 0; i < $sct.web3.eth.accounts.length; i++) {
     console.log($sct.web3.eth.accounts[i], " :", $sct.web3.fromWei($sct.web3.eth.getBalance($sct.web3.eth.accounts[i])).toNumber(), "ETH");
 }
 console.log("Default account:", $sct.web3.eth.defaultAccount);
+console.log("Coinbase:", $sct.web3.eth.coinbase);
+console.log();
+if ($sct.web3.eth.defaultAccount === undefined){
+    if ($sct.web3.eth.coinbase){
+        $sct.web3.eth.defaultAccount = $sct.web3.eth.coinbase;
+        console.log("default account (web3.eth.defaultAccount) is undefined, will be set to:");
+        console.log($sct.web3.eth.defaultAccount + " (the same as web3.eth.coinbase)");
+    } else if ($sct.web3.eth.accounts[0]){
+        $sct.web3.eth.defaultAccount = $sct.web3.eth.accounts[0];
+        console.log("default account (web3.eth.defaultAccount) is undefined, will be set to:");
+        console.log($sct.web3.eth.defaultAccount + " (the same as web3.eth.accounts[0])");
+    }
+}
 console.log("-------------------------------");
 //
 
@@ -131,7 +144,7 @@ $sct.getSolcJsCompiledSourceFromString = function (source, contractName) {
 };
 
 $sct.getSolcJsCompiledSourceFromFile = function (pathToFile, contractName) {
-    const source = fs.readFileSync(pathToFile, 'utf8');
+    const source = fs.readFileSync(pathToFile, 'utf8'); // If the encoding option is specified then this function returns a string. Otherwise it returns a buffer.
     return $sct.getSolcJsCompiledSourceFromString(source, contractName);
 };
 
@@ -145,7 +158,7 @@ $sct.getContractObjFromString = function (source, contractName) {
 };
 
 $sct.getContractObjFromFile = function (pathToFile, contractName) {
-    const source = fs.readFileSync(pathToFile, 'utf8');
+    const source = fs.readFileSync(pathToFile, 'utf8'); // If the encoding option is specified then this function returns a string. Otherwise it returns a buffer.
     $sct.getContractObjFromString(source, contractName);
 };
 
@@ -233,13 +246,12 @@ $sct.deployContractFromString = function (source, contractName, from) {
     console.log("contract address: ", transactionReceipt.contractAddress);
     console.log(); // empty line
     contractInstance.address = transactionReceipt.contractAddress;
-
     return contractInstance;
 
 };
 
 $sct.deployContractFromFile = function (pathToFile, contractName, from) {
-    const source = fs.readFileSync(pathToFile, 'utf8');
+    const source = fs.readFileSync(pathToFile, 'utf8'); // If the encoding option is specified then this function returns a string. Otherwise it returns a buffer.
     return $sct.deployContractFromString(source, contractName, from);
 };
 
@@ -248,14 +260,14 @@ $sct.getContractInstanceFromStringAndAddress = function (source, contractName, a
 };
 
 $sct.getContractInstanceFromFileAndAddress = function (pathToFile, contractName, address) {
-    const source = fs.readFileSync(pathToFile, 'utf8');
+    const source = fs.readFileSync(pathToFile, 'utf8'); // If the encoding option is specified then this function returns a string. Otherwise it returns a buffer.
     return $sct.getContractInstanceFromStringAndAddress(source, contractName, address);
 };
 
 $sct.allEvents = function (contractInstance) {
     // <<<< events:
-    console.log("---------------------------");
-    console.log("listening to events");
+    console.log();
+    console.log("listening to events in contract", contractInstance.address);
     let eventsCounter = 0;
     contractInstance.allEvents(function (error, result) {
             if (!error) {
@@ -293,7 +305,7 @@ $sct.getTruffleContractObjFromString = function (source, contractName) {
 };
 
 $sct.getTruffleContractObjFromFile = function (pathToFile, contractName) {
-    const source = fs.readFileSync(pathToFile, 'utf8');
+    const source = fs.readFileSync(pathToFile, 'utf8'); // If the encoding option is specified then this function returns a string. Otherwise it returns a buffer.
     return $sct.getTruffleContractObjFromString(source, contractName);
 };
 
