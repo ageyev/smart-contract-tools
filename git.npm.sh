@@ -7,8 +7,8 @@
 
 # (!) change version in package.json
 git add .
-git commit -a -m "change: if web3.eth.defaultAccount not set, will be set to web3.eth.coinbase; change package version"
-git tag v0.3.3 # as in package.json
+git commit -a -m "change package version"
+git tag v0.3.4 # as in package.json
 git push origin master --tags
 git push --all
 
