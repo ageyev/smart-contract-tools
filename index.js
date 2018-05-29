@@ -211,7 +211,8 @@ $sct.deployContractFromString = function (source, contractName, from) {
 
     // https://github.com/ethereum/wiki/wiki/JavaScript-API#web3ethgettransaction
     // blockNumber: Number - block number where this transaction was in. null when its pending.
-    while ($sct.web3.eth.getTransaction(contractInstance.transactionHash).blockNumber === null) {
+    while ($sct.web3.eth.getTransaction(contractInstance.transactionHash) === null ||
+    $sct.web3.eth.getTransaction(contractInstance.transactionHash).blockNumber === null) {
         // ...
     }
     // console.log($sct.web3.eth.getTransaction(contractInstance.transactionHash));

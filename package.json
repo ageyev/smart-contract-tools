@@ -1,6 +1,6 @@
 {
   "name": "smart-contract-tools",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "(beta) JavaScript tools for smart contracts on the Ethereum blockchain",
   "main": "index.js",
   "scripts": {
