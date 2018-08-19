@@ -7,8 +7,8 @@
 
 # (!) change version in package.json
 git add .
-git commit -a -m "change package version"
-git tag v0.3.4 # as in package.json
+git commit -a -m "add kovan, change package version"
+git tag v0.3.5 # as in package.json
 git push origin master --tags
 git push --all
 

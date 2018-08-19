@@ -65,6 +65,11 @@ $sct.networks = {
         "etherscanLinkPrefix": "https://rinkeby.etherscan.io/",
         "etherscanApiLink": "https://api-rinkeby.etherscan.io/"
     },
+    "42": {        //
+        "networkName": "Kovan TestNet",
+        "etherscanLinkPrefix": "https://kovan.etherscan.io/",
+        "etherscanApiLink": "https://api-kovan.etherscan.io/"
+    },
     "5777": {
         "networkName": "Ganache",
         "etherscanLinkPrefix": "https://etherscan.io/",
@@ -108,12 +113,12 @@ for (let i = 0; i < $sct.web3.eth.accounts.length; i++) {
 console.log("Default account:", $sct.web3.eth.defaultAccount);
 console.log("Coinbase:", $sct.web3.eth.coinbase);
 console.log();
-if ($sct.web3.eth.defaultAccount === undefined){
-    if ($sct.web3.eth.coinbase){
+if ($sct.web3.eth.defaultAccount === undefined) {
+    if ($sct.web3.eth.coinbase) {
         $sct.web3.eth.defaultAccount = $sct.web3.eth.coinbase;
         console.log("default account (web3.eth.defaultAccount) is undefined, will be set to:");
         console.log($sct.web3.eth.defaultAccount + " (the same as web3.eth.coinbase)");
-    } else if ($sct.web3.eth.accounts[0]){
+    } else if ($sct.web3.eth.accounts[0]) {
         $sct.web3.eth.defaultAccount = $sct.web3.eth.accounts[0];
         console.log("default account (web3.eth.defaultAccount) is undefined, will be set to:");
         console.log($sct.web3.eth.defaultAccount + " (the same as web3.eth.accounts[0])");

@@ -1,6 +1,6 @@
 {
   "name": "smart-contract-tools",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "(beta) JavaScript tools for smart contracts on the Ethereum blockchain",
   "main": "index.js",
   "scripts": {
@@ -26,8 +26,8 @@
   },
   "homepage": "https://github.com/ageyev/smart-contract-tools#readme",
   "dependencies": {
-    "solc": "^0.4.21",
-    "truffle-contract": "^3.0.4",
+    "solc": "^0.4.24",
+    "truffle-contract": "3.0.5",
     "web3": "0.20.6"
   },
   "devDependencies": {}
