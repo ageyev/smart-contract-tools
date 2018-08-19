@@ -84,7 +84,7 @@ if (!$sct.noConnectionToNodeError) {
     $sct.currentNetwork.connected = true;
     let networkId = $sct.web3.version.network; // "3" for Ropsten, "1" for MainNet etc.
 
-    if (networkId === "1" || networkId === "2" || networkId === "3" || networkId === "4" || networkId === "5777") {
+    if (networkId === "1" || networkId === "2" || networkId === "3" || networkId === "4" || networkId === "42" || networkId === "5777") {
         $sct.currentNetwork.networkName = $sct.networks[networkId].networkName;
         $sct.currentNetwork.etherscanLinkPrefix = $sct.networks[networkId].etherscanLinkPrefix;
         $sct.currentNetwork.etherscanApiLink = $sct.networks[networkId].etherscanApiLink;
